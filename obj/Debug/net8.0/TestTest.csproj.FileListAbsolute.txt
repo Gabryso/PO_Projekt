@@ -1,0 +1,14 @@
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\bin\Debug\net8.0\TestTest.exe
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\bin\Debug\net8.0\TestTest.deps.json
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\bin\Debug\net8.0\TestTest.runtimeconfig.json
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\bin\Debug\net8.0\TestTest.dll
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\bin\Debug\net8.0\TestTest.pdb
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.AssemblyInfoInputs.cache
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.AssemblyInfo.cs
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.csproj.CoreCompileInputs.cache
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.dll
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\refint\TestTest.dll
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.pdb
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.genruntimeconfig.cache
+C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\ref\TestTest.dll

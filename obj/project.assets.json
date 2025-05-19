@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Pulpit\\Narzędzia Procesu Tworzenia Oprogramowania\\NPTO_GIT\\Sklep_Internetowy_PO\\Sklep_Internetowy_PO.csproj",
-      "projectName": "Sklep_Internetowy_PO",
-      "projectPath": "C:\\Users\\user\\OneDrive\\Pulpit\\Narzędzia Procesu Tworzenia Oprogramowania\\NPTO_GIT\\Sklep_Internetowy_PO\\Sklep_Internetowy_PO.csproj",
+      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Pulpit\\Programowanie Obiektowe\\TestTest\\TestTest.csproj",
+      "projectName": "TestTest",
+      "projectPath": "C:\\Users\\user\\OneDrive\\Pulpit\\Programowanie Obiektowe\\TestTest\\TestTest.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive\\Pulpit\\Narzędzia Procesu Tworzenia Oprogramowania\\NPTO_GIT\\Sklep_Internetowy_PO\\obj\\",
+      "outputPath": "C:\\Users\\user\\OneDrive\\Pulpit\\Programowanie Obiektowe\\TestTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
