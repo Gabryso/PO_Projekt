@@ -98,9 +98,9 @@
 
 
             Console.Write("Marka (Opcjonalnie): ");
-            string? brand = Console.ReadLine();
+            string brand = Console.ReadLine() ?? "";
             Console.Write("Opis: (Opcjonalnie)");
-            string? desc = Console.ReadLine();
+            string desc = Console.ReadLine() ?? "";
 
             int qty;
             do
@@ -110,6 +110,7 @@
 
 
             Product prod;
+            string? input;
             switch (t)
             {
                 case "1":
@@ -121,29 +122,37 @@
                         Console.Write("Klasyfikacja wiekowa(3, 6, 10, 12, 16): ");
                     } while (!int.TryParse(Console.ReadLine(), out klasyfikacja) || !klasyfikacja_lista.Contains<int>(klasyfikacja));
 
-                    Boolean haz;
-                    string? input;
                     do
                     {
                         Console.Write("Czy zawiera niebezpieczne elementy? (t/n): ");
                         input = Console.ReadLine()?.Trim().ToLower();
                     } while (input != "t" && input != "n");
 
-                    if (input == "t")
-                        haz = true;
-                    else
-                        haz = false;
+                    Boolean haz = input == "t" ? true : false;
 
                         prod = new ToyProduct(name, price, brand, desc, klasyfikacja, haz);
                     break;
                 case "2":
-                    Console.Write("Czy niegazowany? (t/n): ");
-                    Boolean still = Console.ReadLine().ToLower().StartsWith("t");
-                    Console.Write("Czy ZERO? (t/n): ");
-                    Boolean zero = Console.ReadLine().ToLower().StartsWith("t");
+                    
+                    do
+                    {
+                        Console.Write("Czy niegazowany? (t/n): ");
+                        input = Console.ReadLine()?.Trim().ToLower();
+                    } while (input != "t" && input != "n");
+
+                    Boolean still = input == "t" ? true : false;
+
+                    do
+                    {
+                        Console.Write("Czy ZERO? (t/n): ");
+                        input = Console.ReadLine()?.Trim().ToLower();
+                    } while (input != "t" && input != "n");
+
+                    Boolean zero = input == "t" ? true : false;
                     prod = new DrinkProduct(name, price, brand, desc, still, zero);
                     break;
                 case "3":
+
                     Console.Write("Czy organiczne? (t/n): ");
                     Boolean org = Console.ReadLine().ToLower().StartsWith("t");
                     Console.Write("Czy wegańskie? (t/n): ");
@@ -213,7 +222,7 @@ public class Product
     public Product(string name, double price, string brand = "", string description = "")
     {
         Name = name;
-        if (price > 0.0) Price = price;
+        Price = price;
         Brand = brand;
         Description = description;
     }
