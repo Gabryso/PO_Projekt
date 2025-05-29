@@ -94,7 +94,7 @@
             do
             {
                 Console.Write("Cena: ");
-            } while (!double.TryParse(Console.ReadLine() ?? "".Replace('.', ','), out price) || price <= 0);
+            } while (!double.TryParse(Console.ReadLine()?.Replace('.', ','), out price) || price <= 0);
 
 
             Console.Write("Marka (Opcjonalnie): ");
@@ -113,11 +113,28 @@
             switch (t)
             {
                 case "1":
-                    Console.Write("Wiek PEGI: ");
-                    int pegi = int.TryParse(Console.ReadLine(), out int pg) ? pg : 3;
-                    Console.Write("Czy hazardowe elementy? (t/n): ");
-                    Boolean haz = Console.ReadLine().ToLower().StartsWith("t");
-                    prod = new ToyProduct(name, price, brand, desc, pegi, haz);
+                    int[] klasyfikacja_lista = { 3, 6, 10, 12, 16 };
+                    int klasyfikacja;
+
+                    do
+                    {
+                        Console.Write("Klasyfikacja wiekowa(3, 6, 10, 12, 16): ");
+                    } while (!int.TryParse(Console.ReadLine(), out klasyfikacja) || !klasyfikacja_lista.Contains<int>(klasyfikacja));
+
+                    Boolean haz;
+                    string? input;
+                    do
+                    {
+                        Console.Write("Czy zawiera niebezpieczne elementy? (t/n): ");
+                        input = Console.ReadLine()?.Trim().ToLower();
+                    } while (input != "t" && input != "n");
+
+                    if (input == "t")
+                        haz = true;
+                    else
+                        haz = false;
+
+                        prod = new ToyProduct(name, price, brand, desc, klasyfikacja, haz);
                     break;
                 case "2":
                     Console.Write("Czy niegazowany? (t/n): ");
@@ -255,17 +272,17 @@ public class DrinkProduct : Product
 }
 public class ToyProduct : Product
 {
-    protected int PEGI;
+    protected int klasyfikacja;
     protected Boolean Hazard;
-    public ToyProduct(string name, double price, string brand, string description, int pEGI = 3, Boolean hazard = true) : base(name, price, brand, description)
+    public ToyProduct(string name, double price, string brand, string description, int klasyfikacja, Boolean hazard = true) : base(name, price, brand, description)
     {
-        PEGI = pEGI;
+        this.klasyfikacja = klasyfikacja;
         Hazard = hazard;
     }
     public override void DisplayInfo()
     {
         base.DisplayInfo();
-        Console.WriteLine($"O zabawce:\n     Od {PEGI} lat.");
+        Console.WriteLine($"O zabawce:\n     Od {klasyfikacja} lat.");
         if (Hazard) Console.WriteLine("     UWAGA!!! Drobne elementy, trzymać zdala od dzieci!!!");
     }
 }
@@ -283,8 +300,11 @@ public class WareHouse
             return product.NamePublic == name;
         });
     }
-    public int Stock(string name)
+    public int Stock(string? name)
     {
+        if (string.IsNullOrWhiteSpace(name))
+            return 0;
+
         int countOut = 0;
         foreach (Product product in products) if (product.NamePublic == name) countOut++;
         return countOut;
