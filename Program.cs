@@ -11,13 +11,13 @@
             {
                 Console.WriteLine("\nGŁÓWNE MENU\n     1 - Administrator\n     2 - Użytkownik\n     0 - Zakończ program");
                 Console.Write("Opcja: ");
-                string choice = Console.ReadLine();
+                string? choice = Console.ReadLine();
 
                 switch (choice)
                 {
                     case "1":
                         Console.Write("\nPodaj Hasło pracownicze: ");
-                        string password = Console.ReadLine();
+                        string? password = Console.ReadLine();
                         if (password == "qwerty") AdminMenu(magazyn);
                         else Console.WriteLine("\nBłędne hasło, powrót do menu głównego.");
                         break;
@@ -40,7 +40,7 @@
             {
                 Console.WriteLine("\nMENU ADMINISTRATORA\n     1 - Pokaż katalog\n     2 - Dodaj produkt\n     3 - Usuń produkt całkowicie\n     4 - Sprawdź stan produktu\n     0 - Powrót");
                 Console.Write("Opcja: ");
-                string opt = Console.ReadLine();
+                string? opt = Console.ReadLine();
                 switch (opt)
                 {
                     case "1":
@@ -51,13 +51,13 @@
                         break;
                     case "3":
                         Console.Write("Nazwa produktu do usunięcia: ");
-                        string nameDel = Console.ReadLine();
+                        string? nameDel = Console.ReadLine();
                         magazyn.RemoveProduct(nameDel);
                         Console.WriteLine("Usunięto wszystkie sztuki produktu z magazynu (jeśli istniał).");
                         break;
                     case "4":
                         Console.Write("Podaj nazwę produktu: ");
-                        string n = Console.ReadLine();
+                        string? n = Console.ReadLine();
                         Console.WriteLine($"W magazynie jest {magazyn.Stock(n)} sztuk produktu {n}.");
                         break;
                     case "0":
@@ -73,15 +73,15 @@
         {
             Console.WriteLine("\nWybierz typ produktu do dodania:\n     1 - Zabawka\n     2 - Napój\n     3 - Jedzenie\n     4 - Inny");
             Console.Write("Typ: ");
-            string t = Console.ReadLine();
+            string? t = Console.ReadLine();
             Console.Write("Nazwa: ");
-            string name = Console.ReadLine();
+            string? name = Console.ReadLine();
             Console.Write("Cena: ");
             double price = double.TryParse(Console.ReadLine(), out double p) ? p : 0.0;
             Console.Write("Marka (Opcjonalnie): ");
-            string brand = Console.ReadLine();
+            string? brand = Console.ReadLine();
             Console.Write("Opis: (Opcjonalnie)");
-            string desc = Console.ReadLine();
+            string? desc = Console.ReadLine();
             Console.Write("Ilość: ");
             int qty = int.TryParse(Console.ReadLine(), out int q) ? q : 0;
 
@@ -126,7 +126,7 @@
             {
                 Console.WriteLine("\nMENU UŻYTKOWNIKA\n     1 - Pokaż katalog\n     2 - Dodaj do koszyka\n     3 - Zwróć do magazynu\n     4 - Pokaż koszyk\n     0 - Powrót");
                 Console.Write("Opcja: ");
-                string opt = Console.ReadLine();
+                string? opt = Console.ReadLine();
                 switch (opt)
                 {
                     case "1":
@@ -134,14 +134,14 @@
                         break;
                     case "2":
                         Console.Write("Nazwa produktu: ");
-                        string nAdd = Console.ReadLine();
+                        string? nAdd = Console.ReadLine();
                         Console.Write("Ilość: ");
                         int qAdd = int.TryParse(Console.ReadLine(), out int qa) ? qa : 0;
                         koszyk.AddProductsFromWareHouse(magazyn, nAdd, qAdd);
                         break;
                     case "3":
                         Console.Write("Nazwa produktu: ");
-                        string nRet = Console.ReadLine();
+                        string? nRet = Console.ReadLine();
                         Console.Write("Ilość: ");
                         int qRet = int.TryParse(Console.ReadLine(), out int qr) ? qr : 0;
                         koszyk.ReturnProductsToWareHouse(magazyn, nRet, qRet);
@@ -173,7 +173,7 @@ public class Product
         Brand = brand;
         Description = description;
     }
-    public void DisplayInfo()
+    public virtual void DisplayInfo()
     {
         if (Brand != "") Console.WriteLine($"{Name} marki {Brand}:");
         else Console.WriteLine($"{Name}:");
@@ -235,7 +235,7 @@ public class ToyProduct : Product
         PEGI = pEGI;
         Hazard = hazard;
     }
-    public new void DisplayInfo()
+    public override void DisplayInfo()
     {
         base.DisplayInfo();
         Console.WriteLine($"O zabawce:\n     Od {PEGI} lat.");
