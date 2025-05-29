@@ -11,13 +11,14 @@
             {
                 Console.WriteLine("\nGŁÓWNE MENU\n     1 - Administrator\n     2 - Użytkownik\n     0 - Zakończ program");
                 Console.Write("Opcja: ");
-                string? choice = Console.ReadLine();
+                string? choice = Console.ReadLine()?.Trim();
 
+                Console.Clear();
                 switch (choice)
                 {
                     case "1":
                         Console.Write("\nPodaj Hasło pracownicze: ");
-                        string? password = Console.ReadLine();
+                        string? password = Console.ReadLine()?.Trim();
                         if (password == "qwerty") AdminMenu(magazyn);
                         else Console.WriteLine("\nBłędne hasło, powrót do menu głównego.");
                         break;
@@ -40,10 +41,12 @@
             {
                 Console.WriteLine("\nMENU ADMINISTRATORA\n     1 - Pokaż katalog\n     2 - Dodaj produkt\n     3 - Usuń produkt całkowicie\n     4 - Sprawdź stan produktu\n     0 - Powrót");
                 Console.Write("Opcja: ");
-                string? opt = Console.ReadLine();
+                string? opt = Console.ReadLine()?.Trim();
+
                 switch (opt)
                 {
                     case "1":
+                        Console.Clear();
                         magazyn.Catalogue();
                         break;
                     case "2":
@@ -51,7 +54,8 @@
                         break;
                     case "3":
                         Console.Write("Nazwa produktu do usunięcia: ");
-                        string? nameDel = Console.ReadLine();
+                        string? nameDel = Console.ReadLine()?.Trim();
+                        Console.Clear();
                         if (!string.IsNullOrWhiteSpace(nameDel))
                         {
                             magazyn.RemoveProduct(nameDel);
@@ -64,7 +68,8 @@
                         break;
                     case "4":
                         Console.Write("Podaj nazwę produktu: ");
-                        string? n = Console.ReadLine();
+                        string? n = Console.ReadLine()?.Trim();
+                        Console.Clear();
                         Console.WriteLine($"W magazynie jest {magazyn.Stock(n)} sztuk produktu {n}.");
                         break;
                     case "0":
@@ -80,33 +85,36 @@
         {
             Console.WriteLine("\nWybierz typ produktu do dodania:\n     1 - Zabawka\n     2 - Napój\n     3 - Jedzenie\n     4 - Inny");
             Console.Write("Typ: ");
-            string? t = Console.ReadLine();
+            string? t = Console.ReadLine()?.Trim();
 
+            Console.Clear();
             string? name;
             do
             {
                 Console.Write("Nazwa: ");
-                name = Console.ReadLine();
+                name = Console.ReadLine()?.Trim();
+                Console.Clear();
             } while (string.IsNullOrWhiteSpace(name));
-            name = name.Trim();
 
             double price;
             do
             {
+                Console.Clear();
                 Console.Write("Cena: ");
-            } while (!double.TryParse(Console.ReadLine()?.Replace('.', ','), out price) || price <= 0);
+            } while (!double.TryParse(Console.ReadLine()?.Trim().Replace('.', ','), out price) || price <= 0);
 
 
             Console.Write("Marka (Opcjonalnie): ");
             string brand = Console.ReadLine() ?? "";
-            Console.Write("Opis: (Opcjonalnie)");
+            Console.Write("Opis (Opcjonalnie): ");
             string desc = Console.ReadLine() ?? "";
 
             int qty;
             do
             {
+                Console.Clear();
                 Console.Write("Ilość: ");
-            } while (!int.TryParse(Console.ReadLine(), out qty) || qty <= 0);
+            } while (!int.TryParse(Console.ReadLine()?.Trim(), out qty) || qty <= 0);
 
 
             Product prod;
@@ -119,25 +127,28 @@
 
                     do
                     {
+                        Console.Clear();
                         Console.Write("Klasyfikacja wiekowa(3, 6, 10, 12, 16): ");
-                    } while (!int.TryParse(Console.ReadLine(), out klasyfikacja) || !klasyfikacja_lista.Contains<int>(klasyfikacja));
+                    } while (!int.TryParse(Console.ReadLine()?.Trim(), out klasyfikacja) || !klasyfikacja_lista.Contains<int>(klasyfikacja));
 
                     do
                     {
                         Console.Write("Czy zawiera niebezpieczne elementy? (t/n): ");
                         input = Console.ReadLine()?.Trim().ToLower();
+                        Console.Clear();
                     } while (input != "t" && input != "n");
 
                     Boolean haz = input == "t" ? true : false;
 
-                        prod = new ToyProduct(name, price, brand, desc, klasyfikacja, haz);
+                    prod = new ToyProduct(name, price, brand, desc, klasyfikacja, haz);
                     break;
                 case "2":
-                    
+
                     do
                     {
                         Console.Write("Czy niegazowany? (t/n): ");
                         input = Console.ReadLine()?.Trim().ToLower();
+                        Console.Clear();
                     } while (input != "t" && input != "n");
 
                     Boolean still = input == "t" ? true : false;
@@ -146,6 +157,7 @@
                     {
                         Console.Write("Czy ZERO? (t/n): ");
                         input = Console.ReadLine()?.Trim().ToLower();
+                        Console.Clear();
                     } while (input != "t" && input != "n");
 
                     Boolean zero = input == "t" ? true : false;
@@ -156,6 +168,7 @@
                     {
                         Console.Write("Czy organiczne? (t/n): ");
                         input = Console.ReadLine()?.Trim().ToLower();
+                        Console.Clear();
                     } while (input != "t" && input != "n");
 
                     Boolean org = input == "t" ? true : false;
@@ -164,6 +177,7 @@
                     {
                         Console.Write("Czy wegańskie? (t/n): ");
                         input = Console.ReadLine()?.Trim().ToLower();
+                        Console.Clear();
                     } while (input != "t" && input != "n");
 
                     Boolean veg = input == "t" ? true : false;
@@ -186,10 +200,12 @@
             {
                 Console.WriteLine("\nMENU UŻYTKOWNIKA\n     1 - Pokaż katalog\n     2 - Dodaj do koszyka\n     3 - Zwróć do magazynu\n     4 - Pokaż koszyk\n     5 - Wystaw paragon\n     0 - Powrót");
                 Console.Write("Opcja: ");
-                string? opt = Console.ReadLine();
+                string? opt = Console.ReadLine()?.Trim();
+                
                 switch (opt)
                 {
                     case "1":
+                        Console.Clear();
                         magazyn.Catalogue();
                         break;
                     case "2":
@@ -197,13 +213,15 @@
                         string nAdd = Console.ReadLine() ?? "";
                         Console.Write("Ilość: ");
                         int qAdd = int.TryParse(Console.ReadLine(), out int qa) ? qa : 0;
+                        Console.Clear();
                         koszyk.AddProductsFromWareHouse(magazyn, nAdd, qAdd);
                         break;
                     case "3":
                         Console.Write("Nazwa produktu: ");
                         string nRet = Console.ReadLine() ?? "";
-                        Console.Write("Ilość: ");
+                        Console.Write("Ilość: "); 
                         int qRet = int.TryParse(Console.ReadLine(), out int qr) ? qr : 0;
+                        Console.Clear();
                         koszyk.ReturnProductsToWareHouse(magazyn, nRet, qRet);
                         break;
                     case "4":
