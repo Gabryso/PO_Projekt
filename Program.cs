@@ -152,11 +152,21 @@
                     prod = new DrinkProduct(name, price, brand, desc, still, zero);
                     break;
                 case "3":
+                    do
+                    {
+                        Console.Write("Czy organiczne? (t/n): ");
+                        input = Console.ReadLine()?.Trim().ToLower();
+                    } while (input != "t" && input != "n");
 
-                    Console.Write("Czy organiczne? (t/n): ");
-                    Boolean org = Console.ReadLine().ToLower().StartsWith("t");
-                    Console.Write("Czy wegańskie? (t/n): ");
-                    Boolean veg = Console.ReadLine().ToLower().StartsWith("t");
+                    Boolean org = input == "t" ? true : false;
+
+                    do
+                    {
+                        Console.Write("Czy wegańskie? (t/n): ");
+                        input = Console.ReadLine()?.Trim().ToLower();
+                    } while (input != "t" && input != "n");
+
+                    Boolean veg = input == "t" ? true : false;
                     prod = new FoodProduct(name, price, brand, desc, org, veg);
                     break;
                 case "4":
@@ -184,14 +194,14 @@
                         break;
                     case "2":
                         Console.Write("Nazwa produktu: ");
-                        string? nAdd = Console.ReadLine();
+                        string nAdd = Console.ReadLine() ?? "";
                         Console.Write("Ilość: ");
                         int qAdd = int.TryParse(Console.ReadLine(), out int qa) ? qa : 0;
                         koszyk.AddProductsFromWareHouse(magazyn, nAdd, qAdd);
                         break;
                     case "3":
                         Console.Write("Nazwa produktu: ");
-                        string? nRet = Console.ReadLine();
+                        string nRet = Console.ReadLine() ?? "";
                         Console.Write("Ilość: ");
                         int qRet = int.TryParse(Console.ReadLine(), out int qr) ? qr : 0;
                         koszyk.ReturnProductsToWareHouse(magazyn, nRet, qRet);
