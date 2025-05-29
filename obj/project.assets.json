@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jurek\\OneDrive - Politechnika Białostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\TestTest.csproj",
-      "projectName": "TestTest",
-      "projectPath": "C:\\Users\\Jurek\\OneDrive - Politechnika Białostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\TestTest.csproj",
+      "projectUniqueName": "C:\\Users\\Jurek\\OneDrive - Politechnika Białostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\Sklep_Internetowy_PO.csproj",
+      "projectName": "Sklep_Internetowy_PO",
+      "projectPath": "C:\\Users\\Jurek\\OneDrive - Politechnika Białostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\Sklep_Internetowy_PO.csproj",
       "packagesPath": "C:\\Users\\Jurek\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Jurek\\OneDrive - Politechnika Białostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\obj\\",
       "projectStyle": "PackageReference",

@@ -6,7 +6,7 @@
         {
             WareHouse magazyn = new WareHouse();
             Cart koszyk = new Cart();
-            Boolean session= true;
+            Boolean session = true;
             while (session)
             {
                 Console.WriteLine("\nGŁÓWNE MENU\n     1 - Administrator\n     2 - Użytkownik\n     0 - Zakończ program");
@@ -52,8 +52,15 @@
                     case "3":
                         Console.Write("Nazwa produktu do usunięcia: ");
                         string? nameDel = Console.ReadLine();
-                        magazyn.RemoveProduct(nameDel);
-                        Console.WriteLine("Usunięto wszystkie sztuki produktu z magazynu (jeśli istniał).");
+                        if (!string.IsNullOrWhiteSpace(nameDel))
+                        {
+                            magazyn.RemoveProduct(nameDel);
+                            Console.WriteLine("Usunięto wszystkie sztuki produktu z magazynu (jeśli istniał).");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nie usunięto żadnego produktu, ponieważ nie podano nazwy.");
+                        }
                         break;
                     case "4":
                         Console.Write("Podaj nazwę produktu: ");
@@ -74,18 +81,35 @@
             Console.WriteLine("\nWybierz typ produktu do dodania:\n     1 - Zabawka\n     2 - Napój\n     3 - Jedzenie\n     4 - Inny");
             Console.Write("Typ: ");
             string? t = Console.ReadLine();
-            Console.Write("Nazwa: ");
-            string? name = Console.ReadLine();
-            Console.Write("Cena: ");
-            double price = double.TryParse(Console.ReadLine().Replace('.', ','), out double p) ? p : 0.0;
+
+            string? name;
+            do
+            {
+                Console.Write("Nazwa: ");
+                name = Console.ReadLine();
+            } while (string.IsNullOrWhiteSpace(name));
+            name = name.Trim();
+
+            double price;
+            do
+            {
+                Console.Write("Cena: ");
+            } while (!double.TryParse(Console.ReadLine() ?? "".Replace('.', ','), out price) || price <= 0);
+
+
             Console.Write("Marka (Opcjonalnie): ");
             string? brand = Console.ReadLine();
             Console.Write("Opis: (Opcjonalnie)");
             string? desc = Console.ReadLine();
-            Console.Write("Ilość: ");
-            int qty = int.TryParse(Console.ReadLine(), out int q) ? q : 0;
 
-            Product prod = null;
+            int qty;
+            do
+            {
+                Console.Write("Ilość: ");
+            } while (!int.TryParse(Console.ReadLine(), out qty) || qty <= 0);
+
+
+            Product prod;
             switch (t)
             {
                 case "1":
@@ -169,7 +193,7 @@ public class Product
     protected double Price;
     protected string Brand;
     protected string Description;
-    public Product(string name, double price = 0.0, string brand = "", string description = "")
+    public Product(string name, double price, string brand = "", string description = "")
     {
         Name = name;
         if (price > 0.0) Price = price;
