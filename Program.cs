@@ -4,57 +4,159 @@
     {
         static void Main(string[] args)
         {
-            /* ----------  konfiguracja magazynu  ---------- */
             WareHouse magazyn = new WareHouse();
-
-            magazyn.AddProduct(new ToyProduct("Puzzle Pirackie", 6.33, "Arrrs", "Puzle z piratami", 10, true), 2);
-            magazyn.AddProduct(new DrinkProduct("Cola", 12, "Pepsi", "Orzeźwiający napój", false, true), 3);
-            magazyn.AddProduct(new FoodProduct("Krowa", 47.00, "Wołochy", "Duża krowa mleczna", true, true), 1);
-            magazyn.AddProduct(new Product("Gun", 120.50, "Australian", "A big firearm from John Wick!!!"), 1);
-
-            Console.WriteLine("\n=== MAGAZYN – stan początkowy ===");
-            magazyn.Catalogue();
-
-            /* ----------  konfiguracja koszyka  ---------- */
             Cart koszyk = new Cart();
+            Boolean session= true;
+            while (session)
+            {
+                Console.WriteLine("\nGŁÓWNE MENU\n     1 - Administrator\n     2 - Użytkownik\n     0 - Zakończ program");
+                Console.Write("Opcja: ");
+                string choice = Console.ReadLine();
 
-            // 1. poprawne dodanie 2 sztuk Coli
-            koszyk.AddProductsFromWareHouse(magazyn, "Cola", 2);
+                switch (choice)
+                {
+                    case "1":
+                        Console.Write("\nPodaj Hasło pracownicze: ");
+                        string password = Console.ReadLine();
+                        if (password == "qwerty") AdminMenu(magazyn);
+                        else Console.WriteLine("\nBłędne hasło, powrót do menu głównego.");
+                        break;
+                    case "2":
+                        UserMenu(magazyn, koszyk);
+                        break;
+                    case "0":
+                        session = false;
+                        break;
+                    default:
+                        Console.WriteLine("Nieprawidłowa opcja.");
+                        break;
+                }
+            }
+        }
+        private static void AdminMenu(WareHouse magazyn)
+        {
+            Boolean back = false;
+            while (!back)
+            {
+                Console.WriteLine("\nMENU ADMINISTRATORA\n     1 - Pokaż katalog\n     2 - Dodaj produkt\n     3 - Usuń produkt całkowicie\n     4 - Sprawdź stan produktu\n     0 - Powrót");
+                Console.Write("Opcja: ");
+                string opt = Console.ReadLine();
+                switch (opt)
+                {
+                    case "1":
+                        magazyn.Catalogue();
+                        break;
+                    case "2":
+                        AddProductInteractive(magazyn);
+                        break;
+                    case "3":
+                        Console.Write("Nazwa produktu do usunięcia: ");
+                        string nameDel = Console.ReadLine();
+                        magazyn.RemoveProduct(nameDel);
+                        Console.WriteLine("Usunięto wszystkie sztuki produktu z magazynu (jeśli istniał).");
+                        break;
+                    case "4":
+                        Console.Write("Podaj nazwę produktu: ");
+                        string n = Console.ReadLine();
+                        Console.WriteLine($"W magazynie jest {magazyn.Stock(n)} sztuk produktu {n}.");
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("Nieprawidłowa opcja.");
+                        break;
+                }
+            }
+        }
+        private static void AddProductInteractive(WareHouse magazyn)
+        {
+            Console.WriteLine("\nWybierz typ produktu do dodania:\n     1 - Zabawka\n     2 - Napój\n     3 - Jedzenie\n     4 - Inny");
+            Console.Write("Typ: ");
+            string t = Console.ReadLine();
+            Console.Write("Nazwa: ");
+            string name = Console.ReadLine();
+            Console.Write("Cena: ");
+            double price = double.TryParse(Console.ReadLine(), out double p) ? p : 0.0;
+            Console.Write("Marka (Opcjonalnie): ");
+            string brand = Console.ReadLine();
+            Console.Write("Opis: (Opcjonalnie)");
+            string desc = Console.ReadLine();
+            Console.Write("Ilość: ");
+            int qty = int.TryParse(Console.ReadLine(), out int q) ? q : 0;
 
-            // 2. próba dodania 5 Col (w magazynie zostało 1) – powinno się nie udać
-            koszyk.AddProductsFromWareHouse(magazyn, "Cola", 5);
-
-            // 3. próba dodania produktu, którego nie ma
-            koszyk.AddProductsFromWareHouse(magazyn, "FantastycznyNapój", 1);
-
-            // 4. próba dodania ujemnej ilości
-            koszyk.AddProductsFromWareHouse(magazyn, "Krowa", -3);
-
-            // 5. dodanie 1 sztuki puzzli
-            koszyk.AddProductsFromWareHouse(magazyn, "Puzzle Pirackie", 1);
-
-            Console.WriteLine("\n=== KOSZYK – po dodawaniu ===");
-            koszyk.ShowCart();
-
-            Console.WriteLine("\n=== MAGAZYN – po przeniesieniu do koszyka ===");
-            magazyn.Catalogue();
-
-            /* ----------  zwroty  ---------- */
-
-            // zwrot 1 Coli
-            koszyk.ReturnProductsToWareHouse(magazyn, "Cola", 1);
-
-            // próba zwrotu 3 Krow (w koszyku brak) – nie uda się
-            koszyk.ReturnProductsToWareHouse(magazyn, "Krowa", 3);
-
-            Console.WriteLine("\n=== KOSZYK – po zwrotach ===");
-            koszyk.ShowCart();
-
-            Console.WriteLine("\n=== MAGAZYN – stan końcowy ===");
-            magazyn.Catalogue();
-
-            Console.WriteLine("\n*** Test zakończony – naciśnij Enter ***");
-            Console.ReadLine();
+            Product prod = null;
+            switch (t)
+            {
+                case "1":
+                    Console.Write("Wiek PEGI: ");
+                    int pegi = int.TryParse(Console.ReadLine(), out int pg) ? pg : 3;
+                    Console.Write("Czy hazardowe elementy? (t/n): ");
+                    Boolean haz = Console.ReadLine().ToLower().StartsWith("t");
+                    prod = new ToyProduct(name, price, brand, desc, pegi, haz);
+                    break;
+                case "2":
+                    Console.Write("Czy niegazowany? (t/n): ");
+                    Boolean still = Console.ReadLine().ToLower().StartsWith("t");
+                    Console.Write("Czy ZERO? (t/n): ");
+                    Boolean zero = Console.ReadLine().ToLower().StartsWith("t");
+                    prod = new DrinkProduct(name, price, brand, desc, still, zero);
+                    break;
+                case "3":
+                    Console.Write("Czy organiczne? (t/n): ");
+                    Boolean org = Console.ReadLine().ToLower().StartsWith("t");
+                    Console.Write("Czy wegańskie? (t/n): ");
+                    Boolean veg = Console.ReadLine().ToLower().StartsWith("t");
+                    prod = new FoodProduct(name, price, brand, desc, org, veg);
+                    break;
+                case "4":
+                    prod = new Product(name, price, brand, desc);
+                    break;
+                default:
+                    Console.WriteLine("Nieznany typ produktu.");
+                    return;
+            }
+            magazyn.AddProduct(prod, qty);
+            Console.WriteLine($"Dodano {qty} szt. {name} do magazynu.");
+        }
+        private static void UserMenu(WareHouse magazyn, Cart koszyk)
+        {
+            Boolean back = false;
+            while (!back)
+            {
+                Console.WriteLine("\nMENU UŻYTKOWNIKA\n     1 - Pokaż katalog\n     2 - Dodaj do koszyka\n     3 - Zwróć do magazynu\n     4 - Pokaż koszyk\n     0 - Powrót");
+                Console.Write("Opcja: ");
+                string opt = Console.ReadLine();
+                switch (opt)
+                {
+                    case "1":
+                        magazyn.Catalogue();
+                        break;
+                    case "2":
+                        Console.Write("Nazwa produktu: ");
+                        string nAdd = Console.ReadLine();
+                        Console.Write("Ilość: ");
+                        int qAdd = int.TryParse(Console.ReadLine(), out int qa) ? qa : 0;
+                        koszyk.AddProductsFromWareHouse(magazyn, nAdd, qAdd);
+                        break;
+                    case "3":
+                        Console.Write("Nazwa produktu: ");
+                        string nRet = Console.ReadLine();
+                        Console.Write("Ilość: ");
+                        int qRet = int.TryParse(Console.ReadLine(), out int qr) ? qr : 0;
+                        koszyk.ReturnProductsToWareHouse(magazyn, nRet, qRet);
+                        break;
+                    case "4":
+                        koszyk.ShowCart();
+                        break;
+                    case "0":
+                        back = true;
+                        break;
+                    default:
+                        Console.WriteLine("Błędna opcja.");
+                        break;
+                }
+            }
         }
     }
 }
@@ -128,7 +230,7 @@ public class ToyProduct : Product
 {
     protected int PEGI;
     protected Boolean Hazard;
-    public ToyProduct(string name, double price, string brand, string description, int pEGI = 3, bool hazard = true) : base(name, price, brand, description)
+    public ToyProduct(string name, double price, string brand, string description, int pEGI = 3, Boolean hazard = true) : base(name, price, brand, description)
     {
         PEGI = pEGI;
         Hazard = hazard;
@@ -248,7 +350,7 @@ public class Cart
         Console.WriteLine($"Dodano {quantity} sztuk produktu {name} do koszyka.");
         return true;
     }
-    public bool ReturnProductsToWareHouse(WareHouse wareHouse, string name, int quantity)
+    public Boolean ReturnProductsToWareHouse(WareHouse wareHouse, string name, int quantity)
     {
         if (quantity <= 0)
         {
