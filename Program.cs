@@ -1,4 +1,4 @@
-﻿namespace TestTest
+﻿namespace Sklep_Internetowy_PO
 {
     internal class Program
     {
@@ -77,7 +77,7 @@
             Console.Write("Nazwa: ");
             string? name = Console.ReadLine();
             Console.Write("Cena: ");
-            double price = double.TryParse(Console.ReadLine(), out double p) ? p : 0.0;
+            double price = double.TryParse(Console.ReadLine().Replace('.', ','), out double p) ? p : 0.0;
             Console.Write("Marka (Opcjonalnie): ");
             string? brand = Console.ReadLine();
             Console.Write("Opis: (Opcjonalnie)");
@@ -124,7 +124,7 @@
             Boolean back = false;
             while (!back)
             {
-                Console.WriteLine("\nMENU UŻYTKOWNIKA\n     1 - Pokaż katalog\n     2 - Dodaj do koszyka\n     3 - Zwróć do magazynu\n     4 - Pokaż koszyk\n     0 - Powrót");
+                Console.WriteLine("\nMENU UŻYTKOWNIKA\n     1 - Pokaż katalog\n     2 - Dodaj do koszyka\n     3 - Zwróć do magazynu\n     4 - Pokaż koszyk\n     5 - Wystaw paragon\n     0 - Powrót");
                 Console.Write("Opcja: ");
                 string? opt = Console.ReadLine();
                 switch (opt)
@@ -148,6 +148,9 @@
                         break;
                     case "4":
                         koszyk.ShowCart();
+                        break;
+                    case "5":
+                        koszyk.Receipt();
                         break;
                     case "0":
                         back = true;
@@ -198,7 +201,7 @@ public class FoodProduct : Product
         IsOrganic = isOrganic;
         IsVegan = isVegan;
     }
-    public new void DisplayInfo()
+    public override void DisplayInfo()
     {
         base.DisplayInfo();
         Console.WriteLine("Typ żywności:");
@@ -216,7 +219,7 @@ public class DrinkProduct : Product
         IsStill = isStill;
         IsZero = isZero;
     }
-    public new void DisplayInfo()
+    public override void DisplayInfo()
     {
         base.DisplayInfo();
         Console.WriteLine("Typ napoju:");
@@ -390,18 +393,61 @@ public class Cart
             Console.WriteLine("\nKoszyk jest pusty.\n");
             return;
         }
-
-        Console.WriteLine("\n=== Zawartość koszyka ===\n");
-        List<Product> seen = new List<Product>();
+        Console.WriteLine("\nZAWARTOŚĆ KOSZYKA\n");
+        List<string> seen = new List<string>();
+        double lacznaCena = 0.0;
         foreach (Product p in products)
         {
-            if (!seen.Contains(p))
+            if (!seen.Contains(p.NamePublic))
             {
                 p.DisplayInfo();
-                Console.WriteLine($"Ilość w koszyku: {products.Count(x => x.NamePublic == p.NamePublic)}\n");
-                seen.Add(p);
+                int ilosc = 0;
+                foreach (Product x in products)
+                {
+                    if (x.NamePublic == p.NamePublic)
+                    {
+                        ilosc++;
+                        lacznaCena += x.PricePublic;
+                    }
+                }
+
+                Console.WriteLine($"Ilość w koszyku: {ilosc}\n");
+                seen.Add(p.NamePublic);
             }
         }
-        Console.WriteLine($"Łączna wartość: {products.Sum(p => p.PricePublic)} zł\n");
+        Console.WriteLine($"Łączna wartość: {lacznaCena:0.00} zł\n");
+    }
+    public void Receipt()
+    {
+        if (products.Count == 0)
+        {
+            Console.WriteLine("\nKoszyk jest pusty — brak paragonu.\n");
+            return;
+        }
+        Console.WriteLine("\nPARAGON\n");
+        List<string> seen = new List<string>();
+        double lacznaCena = 0.0;
+        foreach (Product p in products)
+        {
+            string nazwa = p.NamePublic;
+            if (!seen.Contains(nazwa))
+            {
+                int ilosc = 0;
+                double cenaJednostkowa = p.PricePublic;
+                double suma = 0.0;
+                foreach (Product x in products)
+                {
+                    if (x.NamePublic == nazwa)
+                    {
+                        ilosc++;
+                        suma += x.PricePublic;
+                    }
+                }
+                Console.WriteLine($"     {nazwa} {cenaJednostkowa:0.00} zł × {ilosc} --- {suma:0.00} zł");
+                lacznaCena += suma;
+                seen.Add(nazwa);
+            }
+        }
+        Console.WriteLine($"\nSuma do zapłaty:{lacznaCena:0.00} zł\n");
     }
 }
