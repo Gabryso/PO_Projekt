@@ -14,24 +14,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Jurek\\OneDrive - Politechnika Bia\u0142ostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Jurek\\OneDrive - Politechnika Bia\u0142ostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\Program.cs*",
-              "RelativeToolTip": "Program.cs*",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAgwN8AAAAoAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Jurek\\OneDrive - Politechnika Bia\u0142ostocka\\Pulpit\\studia\\semestr 2\\PO\\Projekt\\PO_Projekt\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAO0AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-29T16:03:25.844Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             }
           ]
         }

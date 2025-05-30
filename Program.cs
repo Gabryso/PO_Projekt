@@ -76,6 +76,7 @@
                         back = true;
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Nieprawidłowa opcja.");
                         break;
                 }
@@ -101,13 +102,13 @@
             {
                 Console.Clear();
                 Console.Write("Cena: ");
-            } while (!double.TryParse(Console.ReadLine()?.Trim().Replace('.', ','), out price) || price <= 0);
+            } while (!double.TryParse(Console.ReadLine()?.Trim().Replace('.', ','), out price) || price < 0.01 || (price.ToString().Contains(',') ? price.ToString().Split(',')[1].Length > 2 : false));
 
 
             Console.Write("Marka (Opcjonalnie): ");
-            string brand = Console.ReadLine() ?? "";
+            string brand = Console.ReadLine()?.Trim() ?? "";
             Console.Write("Opis (Opcjonalnie): ");
-            string desc = Console.ReadLine() ?? "";
+            string desc = Console.ReadLine()?.Trim() ?? "";
 
             int qty;
             do
@@ -201,7 +202,7 @@
                 Console.WriteLine("\nMENU UŻYTKOWNIKA\n     1 - Pokaż katalog\n     2 - Dodaj do koszyka\n     3 - Zwróć do magazynu\n     4 - Pokaż koszyk\n     5 - Wystaw paragon\n     0 - Powrót");
                 Console.Write("Opcja: ");
                 string? opt = Console.ReadLine()?.Trim();
-                
+
                 switch (opt)
                 {
                     case "1":
@@ -219,7 +220,7 @@
                     case "3":
                         Console.Write("Nazwa produktu: ");
                         string nRet = Console.ReadLine() ?? "";
-                        Console.Write("Ilość: "); 
+                        Console.Write("Ilość: ");
                         int qRet = int.TryParse(Console.ReadLine(), out int qr) ? qr : 0;
                         Console.Clear();
                         koszyk.ReturnProductsToWareHouse(magazyn, nRet, qRet);
@@ -234,6 +235,7 @@
                         back = true;
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Błędna opcja.");
                         break;
                 }
@@ -247,7 +249,7 @@ public class Product
     protected double Price;
     protected string Brand;
     protected string Description;
-    public Product(string name, double price, string brand = "", string description = "")
+    public Product(string name, double price, string brand, string description)
     {
         Name = name;
         Price = price;
@@ -274,7 +276,7 @@ public class FoodProduct : Product
 {
     protected Boolean IsOrganic;
     protected Boolean IsVegan;
-    public FoodProduct(string name, double price, string brand, string description, Boolean isOrganic = false, Boolean isVegan = false) : base(name, price, brand, description)
+    public FoodProduct(string name, double price, string brand, string description, Boolean isOrganic, Boolean isVegan) : base(name, price, brand, description)
     {
         IsOrganic = isOrganic;
         IsVegan = isVegan;
@@ -292,7 +294,7 @@ public class DrinkProduct : Product
 {
     protected Boolean IsStill;
     protected Boolean IsZero;
-    public DrinkProduct(string name, double price, string brand, string description, Boolean isStill = true, Boolean isZero = false) : base(name, price, brand, description)
+    public DrinkProduct(string name, double price, string brand, string description, Boolean isStill, Boolean isZero) : base(name, price, brand, description)
     {
         IsStill = isStill;
         IsZero = isZero;
@@ -311,7 +313,7 @@ public class ToyProduct : Product
 {
     protected int klasyfikacja;
     protected Boolean Hazard;
-    public ToyProduct(string name, double price, string brand, string description, int klasyfikacja, Boolean hazard = true) : base(name, price, brand, description)
+    public ToyProduct(string name, double price, string brand, string description, int klasyfikacja, Boolean hazard) : base(name, price, brand, description)
     {
         this.klasyfikacja = klasyfikacja;
         Hazard = hazard;
