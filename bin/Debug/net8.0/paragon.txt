@@ -1,6 +1,6 @@
 PARAGON
-     t1 23,00 zł × 23 --- 529,00 zł
+     Samochód 100,50 zł × 7 --- 703,50 zł
 
-Suma do zapłaty:529,00 zł
+Suma do zapłaty:703,50 zł
 
 

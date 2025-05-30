@@ -509,6 +509,7 @@ public class Cart
             Console.WriteLine("\nKoszyk jest pusty — brak paragonu.\n");
             return;
         }
+        products.Clear();
         string wynik = "";
         wynik += "PARAGON\n";
         List<string> seen = new List<string>();
