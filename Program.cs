@@ -559,6 +559,7 @@ public class Cart
             }
             catch (Exception)
             {
+                Console.Clear();
                 Console.WriteLine("Wystąpił nieoczekiwany błąd zapisu paragonu do pliku.\n");
 
                 do
