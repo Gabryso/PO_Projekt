@@ -500,15 +500,19 @@ public class Cart
         }
         Console.WriteLine($"Łączna wartość: {lacznaCena:0.00} zł\n");
     }
+
     public void Receipt()
     {
+        Console.Clear();
         if (products.Count == 0)
         {
             Console.WriteLine("\nKoszyk jest pusty — brak paragonu.\n");
             return;
         }
-        Console.WriteLine("\nPARAGON\n");
+        string wynik = "";
+        wynik += "PARAGON\n";
         List<string> seen = new List<string>();
+        
         double lacznaCena = 0.0;
         foreach (Product p in products)
         {
@@ -526,11 +530,48 @@ public class Cart
                         suma += x.PricePublic;
                     }
                 }
-                Console.WriteLine($"     {nazwa} {cenaJednostkowa:0.00} zł × {ilosc} --- {suma:0.00} zł");
+                wynik += $"     {nazwa} {cenaJednostkowa:0.00} zł × {ilosc} --- {suma:0.00} zł\n";
                 lacznaCena += suma;
                 seen.Add(nazwa);
             }
         }
-        Console.WriteLine($"\nSuma do zapłaty:{lacznaCena:0.00} zł\n");
+        wynik += $"\nSuma do zapłaty:{lacznaCena:0.00} zł\n\n\n";
+        Console.WriteLine(wynik);
+
+        
+        string? input;
+        do
+        {
+            Console.Write("Zapisać paragon do pliku? (t/n): ");
+            input = Console.ReadLine()?.Trim().ToLower();
+        } while (input != "t" && input != "n");
+
+        if (input == "n")
+            return;
+
+        do
+        {
+
+            try
+            {
+                File.WriteAllText("paragon.txt", wynik);
+                break;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Wystąpił nieoczekiwany błąd zapisu paragonu do pliku.\n");
+
+                do
+                {
+                    Console.Write("Spróbować jeszcze raz? (t/n): ");
+                    input = Console.ReadLine()?.Trim().ToLower();
+                } while (input != "t" && input != "n");
+
+                if (input == "n")
+                    break;
+            }
+
+        } while (true);
+        
     }
 }
