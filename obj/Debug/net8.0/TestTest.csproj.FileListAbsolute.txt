@@ -12,3 +12,18 @@ C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\
 C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.pdb
 C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\TestTest.genruntimeconfig.cache
 C:\Users\user\OneDrive\Pulpit\Programowanie Obiektowe\TestTest\obj\Debug\net8.0\ref\TestTest.dll
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\bin\Debug\net8.0\TestTest.exe
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\bin\Debug\net8.0\TestTest.deps.json
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\bin\Debug\net8.0\TestTest.runtimeconfig.json
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\bin\Debug\net8.0\TestTest.dll
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\bin\Debug\net8.0\TestTest.pdb
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.AssemblyInfoInputs.cache
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.AssemblyInfo.cs
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.csproj.CoreCompileInputs.cache
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.sourcelink.json
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.dll
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\refint\TestTest.dll
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.pdb
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\TestTest.genruntimeconfig.cache
+C:\Users\Jurek\OneDrive - Politechnika Białostocka\Pulpit\studia\semestr 2\PO\Projekt\PO_Projekt\obj\Debug\net8.0\ref\TestTest.dll
