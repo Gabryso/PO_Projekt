@@ -315,7 +315,7 @@ public class ToyProduct : Product
     protected Boolean Hazard;
     public ToyProduct(string name, double price, string brand, string description, int klasyfikacja, Boolean hazard) : base(name, price, brand, description)
     {
-        this.Klasyfikacja = klasyfikacja;
+        Klasyfikacja = klasyfikacja;
         Hazard = hazard;
     }
     public override void DisplayInfo()
