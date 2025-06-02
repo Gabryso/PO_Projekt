@@ -311,17 +311,17 @@ public class DrinkProduct : Product
 }
 public class ToyProduct : Product
 {
-    protected int klasyfikacja;
+    protected int Klasyfikacja;
     protected Boolean Hazard;
     public ToyProduct(string name, double price, string brand, string description, int klasyfikacja, Boolean hazard) : base(name, price, brand, description)
     {
-        this.klasyfikacja = klasyfikacja;
+        this.Klasyfikacja = klasyfikacja;
         Hazard = hazard;
     }
     public override void DisplayInfo()
     {
         base.DisplayInfo();
-        Console.WriteLine($"O zabawce:\n     Od {klasyfikacja} lat.");
+        Console.WriteLine($"O zabawce:\n     Od {Klasyfikacja} lat.");
         if (Hazard) Console.WriteLine("     UWAGA!!! Drobne elementy, trzymać zdala od dzieci!!!");
     }
 }
