@@ -397,9 +397,9 @@ public class WareHouse
     {
         return products;
     }
-    public void RemoveSingleProduct(Product p)
+    public void RemoveSingleProduct(Product product)
     {
-        products.Remove(p);
+        products.Remove(product);
     }
 }
 public class Cart
